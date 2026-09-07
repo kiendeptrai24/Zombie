@@ -1,7 +1,14 @@
 fileFormatVersion: 2
 guid: f4209d51d1ad0434299f2d498ee076ba
+AssetOrigin:
+  serializedVersion: 1
+  productId: 85702
+  packageName: Toon Soldiers WW2 demo
+  packageVersion: 1.0
+  assetPath: Assets/ToonSoldiers_WW2_demo/model/ToonSoldier_WW2_demo.FBX
+  uploadId: 982300
 ModelImporter:
-  serializedVersion: 24501
+  serializedVersion: 24200
   internalIDToNameTable:
   - first:
       1: 100000
@@ -185,7 +192,6 @@ ModelImporter:
     materialName: 1
     materialSearch: 1
     materialLocation: 1
-    searchTexturesGlobally: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -210,7 +216,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.7
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -236,8 +242,6 @@ ModelImporter:
     generateMeshLods: 0
     meshLodGenerationFlags: 0
     maximumMeshLod: -1
-    importUVs: -1
-    importVertexColors: 1
     meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
@@ -257,7 +261,6 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-    calculateBlendshapeNormalsDeltaFromImportedNormals: 1
   referencedClips: []
   importAnimation: 0
   humanDescription:
@@ -431,12 +434,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001
       parentName: 
-      position: {x: -0.0000000015575574, y: 1.2235097, z: -0.035632763}
+      position: {x: -2.7693372e-11, y: 0.021754002, z: -0.0006335505}
       rotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
       scale: {x: 0.99999994, y: 0.99999994, z: 1}
     - name: Bip001 Footsteps
       parentName: 
-      position: {x: -0, y: 0, z: -1.2285202}
+      position: {x: -0, y: 0, z: -0.021843089}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Pelvis
@@ -446,112 +449,112 @@ ModelImporter:
       scale: {x: 0.9999999, y: 0.9999999, z: 0.9999999}
     - name: Bip001 L Thigh
       parentName: 
-      position: {x: 0.00000029067994, y: 0.00000031793118, z: 0.18964642}
+      position: {x: 0.0000000051682894, y: 0.0000000056528164, z: 0.0033719135}
       rotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
       scale: {x: 0.9999999, y: 1.0000001, z: 0.9999999}
     - name: Bip001 L Calf
       parentName: 
-      position: {x: -0.6094277, y: 0, z: 0}
+      position: {x: -0.010835624, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1.0000001, y: 0.99999994, z: 0.9999998}
     - name: Bip001 L Foot
       parentName: 
-      position: {x: -0.42799026, y: 0, z: 0.000000024223327}
+      position: {x: -0.007609667, y: 0, z: 4.3069076e-10}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
     - name: Bip001 L Toe0
       parentName: 
-      position: {x: -0.18122193, y: 0.27282667, z: 0}
+      position: {x: -0.003222126, y: 0.0048508584, z: 0}
       rotation: {x: 0, y: 0, z: 0.7071068, w: -0.7071068}
       scale: {x: 0.9999998, y: 0.99999964, z: 1}
     - name: Bip001 L Toe0Nub
       parentName: 
-      position: {x: -0.14850947, y: -7.56979e-10, z: 0}
+      position: {x: -0.0026404986, y: -1.3459086e-11, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: -1, y: -0.99999994, z: -0.99999994}
     - name: Bip001 R Thigh
       parentName: 
-      position: {x: -0.00000029067994, y: -0.0000002089262, z: -0.18964642}
+      position: {x: -0.0000000051682894, y: -0.0000000037147079, z: -0.0033719135}
       rotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
       scale: {x: 0.9999999, y: 1.0000002, z: 0.9999998}
     - name: Bip001 R Calf
       parentName: 
-      position: {x: -0.6094277, y: 0, z: 0}
+      position: {x: -0.010835624, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1.0000001, y: 1, z: 0.99999976}
     - name: Bip001 R Foot
       parentName: 
-      position: {x: -0.42799026, y: 0, z: 0.000000024223327}
+      position: {x: -0.007609667, y: 0, z: 4.3069076e-10}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1.0000001, y: 0.9999999, z: 1.0000001}
     - name: Bip001 R Toe0
       parentName: 
-      position: {x: -0.18122193, y: 0.27282667, z: 0}
+      position: {x: -0.003222126, y: 0.0048508584, z: 0}
       rotation: {x: 0, y: 0, z: 0.7071068, w: -0.7071068}
       scale: {x: 0.9999999, y: 1, z: 1}
     - name: Bip001 R Toe0Nub
       parentName: 
-      position: {x: -0.14850944, y: 0, z: 0}
+      position: {x: -0.0026404979, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 0.99999994, y: 1, z: 0.99999994}
     - name: Bip001 Spine
       parentName: 
-      position: {x: -0.16117437, y: -0.00047135568, z: 0.0000002241702}
+      position: {x: -0.0028656805, y: -0.0000083807045, z: 0.000000003985746}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: Bip001 L Clavicle
       parentName: 
-      position: {x: -0.5700798, y: 0.00061332254, z: 0.12735398}
+      position: {x: -0.010136019, y: 0.000010904875, z: 0.002264354}
       rotation: {x: 0.7071068, y: -0.000000030908623, z: -0.7071068, w: 0.000000030908623}
       scale: {x: 1.0000001, y: 1.0000001, z: 0.9999998}
     - name: Bip001 L UpperArm
       parentName: 
-      position: {x: -0.24968553, y: 0.000000006055832, z: 0}
+      position: {x: -0.004439409, y: 1.0767269e-10, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1.0000001, z: 1.0000004}
     - name: Bip001 L Forearm
       parentName: 
-      position: {x: -0.4044886, y: 0, z: -0.00000019378662}
+      position: {x: -0.007191807, y: 0, z: -0.000000003445526}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1.0000002, y: 0.99999994, z: 0.99999976}
     - name: Bip001 L Hand
       parentName: 
-      position: {x: -0.34167933, y: 0, z: 0}
+      position: {x: -0.0060750586, y: 0, z: 0}
       rotation: {x: 0.7071068, y: 0, z: 0, w: -0.7071068}
       scale: {x: 1, y: 1, z: 1.0000001}
     - name: Bip001 Neck
       parentName: 
-      position: {x: -0.6330967, y: 0.005227297, z: 0.00000000565356}
+      position: {x: -0.011256458, y: 0.00009294134, z: 1.00520293e-10}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Head
       parentName: 
-      position: {x: -0.12508887, y: 0.000000048446655, z: 0}
+      position: {x: -0.0022240803, y: 8.613815e-10, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1.0000002, y: 1, z: 1}
     - name: Bip001 HeadNub
       parentName: 
-      position: {x: -0.36115566, y: 0, z: 0}
+      position: {x: -0.006421347, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 0.99999994, z: 0.99999994}
     - name: Bip001 R Clavicle
       parentName: 
-      position: {x: -0.5700798, y: 0.00061403104, z: -0.12735397}
+      position: {x: -0.010136019, y: 0.0000109174725, z: -0.0022643537}
       rotation: {x: 0.7071068, y: -0.000000030908623, z: 0.7071068, w: -0.000000030908623}
       scale: {x: 0.9999999, y: 0.9999998, z: 1}
     - name: Bip001 R UpperArm
       parentName: 
-      position: {x: -0.24968551, y: 0, z: 0}
+      position: {x: -0.0044394084, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1.0000001, z: 1.0000002}
     - name: Bip001 R Forearm
       parentName: 
-      position: {x: -0.4044885, y: 0, z: 0.00000019378662}
+      position: {x: -0.0071918056, y: 0, z: 0.000000003445526}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1.0000001, y: 1.0000002, z: 0.9999999}
     - name: Bip001 R Hand
       parentName: 
-      position: {x: -0.34167925, y: 0, z: -0.00000019378662}
+      position: {x: -0.0060750567, y: 0, z: -0.000000003445526}
       rotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
       scale: {x: 0.99999976, y: 0.99999976, z: 0.9999998}
     - name: MESH_US_Infantry_simple
@@ -566,7 +569,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.01778
     rootMotionBoneName: 
     hasTranslationDoF: 1
     hasExtraRoot: 0
@@ -583,10 +586,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 85702
-  packageName: Toon Soldiers WW2 demo
-  packageVersion: 1.0
-  assetPath: Assets/ToonSoldiers_WW2_demo/model/ToonSoldier_WW2_demo.FBX
-  uploadId: 982300
