@@ -23,7 +23,7 @@ public class Shotgun : WeaponBase
                 firePoint.rotation *
                 Quaternion.Euler(0f, angle, 0f);
 
-            Instantiate(
+            ObjectPool.Instance.GetObject(
                 bulletPrefab,
                 firePoint.position,
                 rotation

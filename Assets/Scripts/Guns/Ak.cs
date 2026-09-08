@@ -11,7 +11,7 @@ public class Ak : WeaponBase
 
         Debug.Log("Rifle Shoot");
 
-        Instantiate(
+        ObjectPool.Instance.GetObject(
             bulletPrefab,
             firePoint.position,
             firePoint.rotation

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class WeaponController : KienMonoBehaviour
 {
+    [SerializeField] private int baseWeapon;
     [Header("Weapons")]
     [SerializeField] private WeaponBase[] weapons;
     private ZombieDetector zombieDetector;
@@ -14,7 +15,7 @@ public class WeaponController : KienMonoBehaviour
     }
     protected override void Start()
     {
-        EquipWeapon(0);
+        EquipWeapon(baseWeapon);
     }
 
     public void Shoot()

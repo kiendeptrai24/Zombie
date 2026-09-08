@@ -4,10 +4,9 @@ using UnityEngine;
 public class PlayerMovement : KienMonoBehaviour
 {
     private InputManager input;
-    private Animator anim;
     private Rigidbody rb;
     public Vector2 movementDir;
-
+    private ZombieDetector zombieDetector;
     public float moveSpeed = 12f;
 
     protected override void Awake()
@@ -15,8 +14,8 @@ public class PlayerMovement : KienMonoBehaviour
         base.Awake();
 
         rb = GetComponent<Rigidbody>();
-        anim = GetComponentInChildren<Animator>();
-        
+        zombieDetector = GetComponent<ZombieDetector>();
+
         rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
@@ -31,6 +30,7 @@ public class PlayerMovement : KienMonoBehaviour
         if (input == null) return;
 
         movementDir = input.GetInputDirection();
+        LookAtZombie();
     }
 
     private void FixedUpdate()
@@ -48,6 +48,21 @@ public class PlayerMovement : KienMonoBehaviour
 
         rb.linearVelocity = dir * moveSpeed;
     }
+    private void LookAtZombie()
+    {
+        if (movementDir.magnitude < .001f || zombieDetector.NearestZombie != null)
+            return;
 
-    
+        Vector3 dir = new Vector3(
+            movementDir.x,
+            0f,
+            movementDir.y
+        );
+
+        if (dir.sqrMagnitude > 0.01f)
+        {
+            transform.rotation = Quaternion.LookRotation(dir);
+        }
+    }
+
 }

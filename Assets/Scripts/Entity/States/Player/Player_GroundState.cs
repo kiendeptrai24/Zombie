@@ -19,7 +19,7 @@ public class Player_GroundState : PlayerState
     }
     private void AnimationControllers()
     {
-        if(zombieDetector.NearestZombie != null)
+        if (zombieDetector.NearestZombie != null)
             m_machine.ChangeState<Player_BattleState>();
         movementDir = m_player.GetDir();
         if (movementDir.sqrMagnitude < 0.0001f)
@@ -29,22 +29,15 @@ public class Player_GroundState : PlayerState
             return;
         }
 
-        Vector3 moveDir = new Vector3(
-            movementDir.x,
-            0f,
-            movementDir.y
-        ).normalized;
-
         float xVelocity = Vector3.Dot(
-            moveDir,
+            movementDir.normalized,
             m_player.transform.right
         );
 
         float zVelocity = Vector3.Dot(
-            moveDir,
+            movementDir.normalized,
             m_player.transform.forward
         );
-
         m_anim.SetFloat("xVelocity", xVelocity, 0.1f, Time.deltaTime);
         m_anim.SetFloat("zVelocity", zVelocity, 0.1f, Time.deltaTime);
     }

@@ -7,6 +7,7 @@ public class ZombieDetector : MonoBehaviour
     [SerializeField] private float interval = .3f;
     [SerializeField] private float timer;
     private Transform nearestZombie;
+    [SerializeField] private Transform gunPoint;
 
     public Transform NearestZombie => nearestZombie;
     public void SetDetectionRadius(float radius) => detectionRadius = radius;
@@ -17,7 +18,8 @@ public class ZombieDetector : MonoBehaviour
             timer = Time.time;
             FindNearestZombie();
         }
-        LookAtZombie();
+        LookAtZombie(transform);
+        LookAtZombie(gunPoint);
     }
 
     private void FindNearestZombie()
@@ -44,19 +46,19 @@ public class ZombieDetector : MonoBehaviour
             }
         }
     }
-    private void LookAtZombie()
+    private void LookAtZombie(Transform point)
     {
         if (nearestZombie == null)
             return;
 
         Vector3 direction =
-            nearestZombie.position - transform.position;
+            nearestZombie.position - point.position;
 
         direction.y = 0f;
 
         if (direction.sqrMagnitude > 0.01f)
         {
-            transform.rotation = Quaternion.LookRotation(direction);
+            point.rotation = Quaternion.LookRotation(direction);
         }
     }
     private void OnDrawGizmosSelected()
