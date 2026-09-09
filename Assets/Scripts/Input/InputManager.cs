@@ -14,6 +14,7 @@ public class InputManager : Singleton<InputManager>
     {
         base.Awake();
         inputHandler = new InputHandler();
+        DontDestroyOnLoad(gameObject);
     }
     void OnEnable()
     {

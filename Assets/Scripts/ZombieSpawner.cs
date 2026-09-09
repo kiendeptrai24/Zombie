@@ -1,6 +1,8 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieSpawner : MonoBehaviour
+public class ZombieSpawner : Singleton<ZombieSpawner>
 {
     [Header("References")]
     [SerializeField] private Transform player;
@@ -27,11 +29,33 @@ public class ZombieSpawner : MonoBehaviour
 
     private float spawnTimer;
     private float currentSpawnInterval;
-
-    private void Start()
+    [SerializeField] private List<GameObject> zombies;
+    protected override void Start()
     {
         currentSpawnInterval = startSpawnInterval;
         spawnTimer = currentSpawnInterval;
+    }
+    private void OnEnable()
+    {
+        GameManger.Instance.OnGameEnded += ReleaseZombie;
+
+    }
+    private void OnDisable()
+    {
+        if (GameManger.Instance != null)
+            GameManger.Instance.OnGameEnded -= ReleaseZombie;
+    }
+    public void ReleaseZombieDeaded(GameObject zombie)
+    {
+        if (zombies.Contains(zombie))
+            zombies.Remove(zombie);
+    }
+    private void ReleaseZombie()
+    {
+        foreach (var zombie in zombies)
+        {
+            ObjectPool.Instance.ReturnObject(zombie);
+        }
     }
 
     private void Update()
@@ -72,11 +96,12 @@ public class ZombieSpawner : MonoBehaviour
         if (!TryGetRandomSpawnPosition(out Vector3 spawnPosition))
             return;
 
-        ObjectPool.Instance.GetObject(
+        var zombie = ObjectPool.Instance.GetObject(
             zombiePrefab,
             spawnPosition,
             Quaternion.identity
         );
+        zombies.Add(zombie);
     }
 
     private bool TryGetRandomSpawnPosition(out Vector3 spawnPosition)
@@ -84,9 +109,9 @@ public class ZombieSpawner : MonoBehaviour
         spawnPosition = Vector3.zero;
 
         Vector2 randomDirection =
-            Random.insideUnitCircle.normalized;
+            UnityEngine.Random.insideUnitCircle.normalized;
 
-        float distance = Random.Range(
+        float distance = UnityEngine.Random.Range(
             minSpawnDistance,
             maxSpawnDistance
         );

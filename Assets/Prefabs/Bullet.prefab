@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1692234558557108847}
   - component: {fileID: 6828476184841716029}
   - component: {fileID: 3437884234717868368}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 3076175701926915707}
   - component: {fileID: 8040531369048058547}
   - component: {fileID: 6183139755921701229}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FireEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
