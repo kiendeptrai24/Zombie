@@ -799,7 +799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   movementDir: {x: 0, y: 0}
-  moveSpeed: 12
+  moveSpeed: 5
 --- !u!114 &9142097120333748854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,6 +819,11 @@ MonoBehaviour:
   interval: 0.3
   timer: 0
   gunPoint: {fileID: 2516690617815510062}
+  scanRadius: 10
+  explosionRadius: 3
+  whatIsZombie:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &2172094223188615733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,9 +865,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponController
   baseWeapon: 1
+  bombPrefab: {fileID: 0}
   weapons:
   - {fileID: 7043495893784011959}
   - {fileID: 8741919244476838647}
+  interval: 5
 --- !u!1 &2184510160327984916
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,11 +3,15 @@ using UnityEngine;
 public class WeaponController : KienMonoBehaviour
 {
     [SerializeField] private int baseWeapon;
+    [SerializeField] private GameObject bombPrefab;
     [Header("Weapons")]
     [SerializeField] private WeaponBase[] weapons;
     private ZombieDetector zombieDetector;
+
     private WeaponBase currentWeapon;
     private int currentWeaponIndex;
+    [SerializeField] private float interval = 1;
+    private float timer;
     protected override void Awake()
     {
         base.Awake();
@@ -31,6 +35,12 @@ public class WeaponController : KienMonoBehaviour
         {
             Shoot();
         }
+        if (Time.time > timer + interval)
+        {
+            timer = Time.time;
+            ThrowBomb(zombieDetector.FindBestBombPosition());
+        }
+
     }
     public void SwitchWeapon()
     {
@@ -57,5 +67,42 @@ public class WeaponController : KienMonoBehaviour
         // Bật súng mới
         currentWeapon.gameObject.SetActive(true);
     }
-    
+    public void ThrowBomb(Vector3 targetPosition)
+    {
+        Vector3 throwPoint = transform.position + Vector3.up;
+        GameObject bomb = ObjectPool.Instance.GetObject(
+            bombPrefab,
+            throwPoint + Vector3.up,
+            Quaternion.identity
+        );
+        bomb.GetComponent<BombController>().ResetBomb();
+        Rigidbody rb = bomb.GetComponent<Rigidbody>();
+
+        Vector3 velocity = CalculateThrowVelocity(
+            throwPoint,
+            targetPosition,
+            .5f
+        );
+
+        rb.linearVelocity = velocity;
+    }
+    private Vector3 CalculateThrowVelocity(
+        Vector3 start,
+        Vector3 target,
+        float flightTime)
+    {
+        Vector3 distance = target - start;
+
+        Vector3 velocity = new Vector3(
+            distance.x / flightTime,
+            0f,
+            distance.z / flightTime
+        );
+
+        velocity.y =
+            (distance.y - 0.5f * Physics.gravity.y * flightTime * flightTime)
+            / flightTime;
+
+        return velocity;
+    }
 }

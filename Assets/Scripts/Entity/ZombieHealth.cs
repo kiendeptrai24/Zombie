@@ -1,12 +1,29 @@
 
 
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ZombieHealth : KienMonoBehaviour, IDamageable
 {
     public bool isDead = false;
     public float health = 10;
     public GameObject attackEffect;
+    private Rigidbody rb;
+    private NavMeshAgent agent;
+    private Collider cl;
+    private ZombieDissolve zombieDissolve;
+    private ZombieController zombie;
+    protected override void Awake()
+    {
+        base.Awake();
+        rb = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
+        zombieDissolve = GetComponent<ZombieDissolve>();
+        zombie = GetComponent<ZombieController>();
+        cl = GetComponent<Collider>();
+
+    }
     private void OnEnable()
     {
         Reset();
@@ -23,12 +40,17 @@ public class ZombieHealth : KienMonoBehaviour, IDamageable
         if (health <= 0 && isDead == false)
         {
             isDead = true;
-            ObjectPool.Instance.ReturnObject(gameObject);
+            zombieDissolve.PlayDissolve();
+            cl.enabled = false;
+            zombie.Dead();
         }
     }
     private void Reset()
     {
         health = 10;
+        agent.enabled = true;
         isDead = false;
+        rb.isKinematic = true;
+        cl.enabled = true;
     }
 }

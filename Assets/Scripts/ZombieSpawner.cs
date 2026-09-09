@@ -10,6 +10,11 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private float minSpawnDistance = 10f;
     [SerializeField] private float maxSpawnDistance = 20f;
 
+    [Header("Ground Check")]
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float raycastHeight = 20f;
+    [SerializeField] private float raycastDistance = 50f;
+
     [Header("Spawn Rate")]
     [SerializeField] private float startSpawnInterval = 2f;
     [SerializeField] private float minSpawnInterval = 0.2f;
@@ -45,18 +50,15 @@ public class ZombieSpawner : MonoBehaviour
 
     private void UpdateSpawnRate()
     {
-        // Cứ mỗi difficultyIncreaseTime giây
-        // giảm thời gian giữa 2 lần spawn
         float decrease =
             Time.timeSinceLevelLoad /
             difficultyIncreaseTime *
             spawnIntervalDecrease;
 
-        currentSpawnInterval =
-            Mathf.Max(
-                minSpawnInterval,
-                startSpawnInterval - decrease
-            );
+        currentSpawnInterval = Mathf.Max(
+            minSpawnInterval,
+            startSpawnInterval - decrease
+        );
     }
 
     private void TrySpawnZombie()
@@ -67,7 +69,8 @@ public class ZombieSpawner : MonoBehaviour
         if (GetZombieCount() >= maxZombieCount)
             return;
 
-        Vector3 spawnPosition = GetRandomSpawnPosition();
+        if (!TryGetRandomSpawnPosition(out Vector3 spawnPosition))
+            return;
 
         ObjectPool.Instance.GetObject(
             zombiePrefab,
@@ -76,24 +79,40 @@ public class ZombieSpawner : MonoBehaviour
         );
     }
 
-    private Vector3 GetRandomSpawnPosition()
+    private bool TryGetRandomSpawnPosition(out Vector3 spawnPosition)
     {
+        spawnPosition = Vector3.zero;
+
         Vector2 randomDirection =
             Random.insideUnitCircle.normalized;
 
-        float distance =
-            Random.Range(
-                minSpawnDistance,
-                maxSpawnDistance
-            );
+        float distance = Random.Range(
+            minSpawnDistance,
+            maxSpawnDistance
+        );
 
-        Vector3 offset = new Vector3(
+        Vector3 position = player.position + new Vector3(
             randomDirection.x,
             0f,
             randomDirection.y
         ) * distance;
 
-        return player.position + offset;
+        // Đưa điểm bắt đầu raycast lên cao
+        Vector3 rayOrigin = position + Vector3.up * raycastHeight;
+
+        if (Physics.Raycast(
+            rayOrigin,
+            Vector3.down,
+            out RaycastHit hit,
+            raycastDistance,
+            groundLayer
+        ))
+        {
+            spawnPosition = hit.point;
+            return true;
+        }
+
+        return false;
     }
 
     private int GetZombieCount()

@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class FreeZombie_EyesGlow : MonoBehaviour
 {
-
-
-
-    private int eyesTyp;
     public Material[] BodyMaterials = new Material[1];
 
     public enum EyesGlow

@@ -17,6 +17,7 @@ public class ZombieMovement : MonoBehaviour
 
     private void Update()
     {
+        if (agent.isActiveAndEnabled == false) return;
         Transform target = targetFinder.CurrentTarget;
 
         if (target == null)

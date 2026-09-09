@@ -11,6 +11,7 @@ public class ZombieStateMachine : IStateMachine
         _statesDirtionary.Add(typeof(Zombie_IdleState), new Zombie_IdleState(zombie, this, "Idle"));
         _statesDirtionary.Add(typeof(Zombie_MoveState), new Zombie_MoveState(zombie, this, "Move"));
         _statesDirtionary.Add(typeof(Zombie_BattleState), new Zombie_BattleState(zombie, this, "Attack"));
+        _statesDirtionary.Add(typeof(Zombie_HitBombState), new Zombie_HitBombState(zombie, this, "HitBomb"));
     }
     public void SetStateList(Dictionary<Type, IState> dic)
     {
