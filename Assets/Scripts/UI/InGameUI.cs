@@ -27,6 +27,7 @@ public class InGameUI : KienMonoBehaviour
         });
         quitGame.onClick.AddListener(() =>
         {
+            SFXManager.Instance.Stop();
             SceneLoadManager.Instance.LoadRegularScene("Menu");
         });
         openSetting.onClick.AddListener(() =>

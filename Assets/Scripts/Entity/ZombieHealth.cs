@@ -44,7 +44,7 @@ public class ZombieHealth : KienMonoBehaviour, IDamageable
             isDead = true;
             zombieDissolve.PlayDissolve();
             cl.enabled = false;
-            zombieSpawner.ReleaseZombieDeaded(gameObject);
+            zombieSpawner.ReleaseZombieDead(gameObject);
             zombie.Dead();
         }
     }

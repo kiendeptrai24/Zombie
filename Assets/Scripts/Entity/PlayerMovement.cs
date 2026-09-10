@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerMovement : KienMonoBehaviour
 {
-    private InputManager input;
+    [SerializeField] private InputManager input;
     private Rigidbody rb;
     public Vector2 movementDir;
     private ZombieDetector zombieDetector;
@@ -22,7 +22,6 @@ public class PlayerMovement : KienMonoBehaviour
     protected override void Start()
     {
         base.Start();
-        input = InputManager.Instance;
     }
 
     private void Update()

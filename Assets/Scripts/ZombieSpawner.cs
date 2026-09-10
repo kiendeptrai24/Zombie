@@ -1,12 +1,12 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieSpawner : Singleton<ZombieSpawner>
+public class ZombieSpawner : KienMonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform player;
     [SerializeField] private GameObject zombiePrefab;
+    [SerializeField] private GameManger gameManger;
 
     [Header("Spawn Position")]
     [SerializeField] private float minSpawnDistance = 10f;
@@ -20,7 +20,6 @@ public class ZombieSpawner : Singleton<ZombieSpawner>
     [Header("Spawn Rate")]
     [SerializeField] private float startSpawnInterval = 2f;
     [SerializeField] private float minSpawnInterval = 0.2f;
-
     [SerializeField] private float difficultyIncreaseTime = 30f;
     [SerializeField] private float spawnIntervalDecrease = 0.2f;
 
@@ -29,37 +28,25 @@ public class ZombieSpawner : Singleton<ZombieSpawner>
 
     private float spawnTimer;
     private float currentSpawnInterval;
-    [SerializeField] private List<GameObject> zombies = new();
-    [SerializeField] private GameManger gameManger;
+
+    private readonly List<GameObject> zombies = new();
 
     protected override void Start()
     {
-        currentSpawnInterval = startSpawnInterval;
-        spawnTimer = currentSpawnInterval;
-        if (gameManger != null)
-            gameManger.OnGameEnded += ReleaseZombie;
+        ResetSpawner();
 
+        if (gameManger != null)
+        {
+            gameManger.OnGameEnded += ReleaseZombie;
+        }
     }
+
     private void OnDisable()
     {
         if (gameManger != null)
-            gameManger.OnGameEnded -= ReleaseZombie;
-    }
-    public void ReleaseZombieDeaded(GameObject zombie)
-    {
-        if (zombies.Contains(zombie))
-            zombies.Remove(zombie);
-    }
-    private void ReleaseZombie()
-    {
-        if (zombies.Count < 0)
-            return;
-        foreach (var zombie in zombies)
         {
-            if (zombies.Contains(zombie))
-                ObjectPool.Instance.ReturnObject(zombie);
+            gameManger.OnGameEnded -= ReleaseZombie;
         }
-        zombies.Clear();
     }
 
     private void Update()
@@ -71,7 +58,6 @@ public class ZombieSpawner : Singleton<ZombieSpawner>
         if (spawnTimer <= 0f)
         {
             TrySpawnZombie();
-
             spawnTimer = currentSpawnInterval;
         }
     }
@@ -94,28 +80,32 @@ public class ZombieSpawner : Singleton<ZombieSpawner>
         if (player == null || zombiePrefab == null)
             return;
 
-        if (GetZombieCount() >= maxZombieCount)
+        // Không cần FindGameObjectsWithTag
+        if (zombies.Count >= maxZombieCount)
             return;
 
         if (!TryGetRandomSpawnPosition(out Vector3 spawnPosition))
             return;
 
-        var zombie = ObjectPool.Instance.GetObject(
+        GameObject zombie = ObjectPool.Instance.GetObject(
             zombiePrefab,
             spawnPosition,
             Quaternion.identity
         );
-        zombies.Add(zombie);
+
+        if (zombie != null)
+        {
+            zombies.Add(zombie);
+        }
     }
 
     private bool TryGetRandomSpawnPosition(out Vector3 spawnPosition)
     {
         spawnPosition = Vector3.zero;
 
-        Vector2 randomDirection =
-            UnityEngine.Random.insideUnitCircle.normalized;
+        Vector2 randomDirection = Random.insideUnitCircle.normalized;
 
-        float distance = UnityEngine.Random.Range(
+        float distance = Random.Range(
             minSpawnDistance,
             maxSpawnDistance
         );
@@ -126,7 +116,6 @@ public class ZombieSpawner : Singleton<ZombieSpawner>
             randomDirection.y
         ) * distance;
 
-        // Đưa điểm bắt đầu raycast lên cao
         Vector3 rayOrigin = position + Vector3.up * raycastHeight;
 
         if (Physics.Raycast(
@@ -144,8 +133,35 @@ public class ZombieSpawner : Singleton<ZombieSpawner>
         return false;
     }
 
-    private int GetZombieCount()
+    public void ReleaseZombieDead(GameObject zombie)
     {
-        return GameObject.FindGameObjectsWithTag("Zombie").Length;
+        if (zombie == null)
+            return;
+
+        zombies.Remove(zombie);
+    }
+
+    private void ReleaseZombie()
+    {
+        if (zombies.Count == 0)
+            return;
+
+        for (int i = zombies.Count - 1; i >= 0; i--)
+        {
+            GameObject zombie = zombies[i];
+
+            if (zombie != null)
+            {
+                ObjectPool.Instance.ReturnObject(zombie);
+            }
+        }
+
+        zombies.Clear();
+        ResetSpawner();
+    }
+    private void ResetSpawner()
+    {
+        currentSpawnInterval = startSpawnInterval;
+        spawnTimer = currentSpawnInterval;
     }
 }

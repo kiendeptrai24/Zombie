@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MissionData
   missionName: Level 1
   description: Survive for 3 minutes
-  duration: 12
+  duration: 180
   sceneName: Game 1

@@ -7,7 +7,8 @@ public class ZombieMovement : MonoBehaviour
     private NavMeshAgent agent;
     private ZombieTargetFinder targetFinder;
     [SerializeField] private float moveSpeed;
-
+    private float interval = .4f;
+    private float timer;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -22,7 +23,10 @@ public class ZombieMovement : MonoBehaviour
 
         if (target == null)
             return;
-
+        if (Time.time > interval + timer)
+        {
+            timer = Time.time;
+        }
         agent.SetDestination(target.position);
     }
 }

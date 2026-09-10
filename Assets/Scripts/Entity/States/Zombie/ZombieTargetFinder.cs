@@ -8,16 +8,19 @@ public class ZombieTargetFinder : MonoBehaviour
 
     public Transform CurrentTarget => currentTarget;
 
-    private void Update()
+    private void OnEnable()
     {
         FindNearestPlayer();
+    }
+    private void Update()
+    {
         LookAtPlayer();
     }
 
     private void FindNearestPlayer()
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         float closestDistance = Mathf.Infinity;
         Transform nearestPlayer = null;
 

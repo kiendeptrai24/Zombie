@@ -21,9 +21,9 @@ public class ZombieDetector : MonoBehaviour
         {
             timer = Time.time;
             FindNearestZombie();
+            LookAtZombie(transform);
+            LookAtZombie(gunPoint);
         }
-        LookAtZombie(transform);
-        LookAtZombie(gunPoint);
     }
 
     private void FindNearestZombie()

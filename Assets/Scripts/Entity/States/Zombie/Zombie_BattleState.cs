@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Zombie_BattleState : Zombie_GroundState, IAnimationTrigger, ISkillTrigger
+public class Zombie_BattleState : ZombieState, IAnimationTrigger, ISkillTrigger
 {
     public Zombie_BattleState(ZombieController player, IStateMachine stateMachine, string animName) : base(player, stateMachine, animName)
     {
@@ -20,7 +20,7 @@ public class Zombie_BattleState : Zombie_GroundState, IAnimationTrigger, ISkillT
         {
             var target = player.GetComponent<IDamageable>();
             if (target != null)
-                target.TakeDamage(1);
+                target.TakeDamage(10);
         }
     }
 

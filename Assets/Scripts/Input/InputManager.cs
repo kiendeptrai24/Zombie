@@ -7,14 +7,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
 
 
-public class InputManager : Singleton<InputManager>
+public class InputManager : KienMonoBehaviour
 {
     public InputHandler inputHandler;
     protected override void Awake()
     {
         base.Awake();
         inputHandler = new InputHandler();
-        DontDestroyOnLoad(gameObject);
     }
     void OnEnable()
     {
