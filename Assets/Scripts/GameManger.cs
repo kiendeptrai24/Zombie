@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class GameManger : Singleton<GameManger>
+public class GameManger : KienMonoBehaviour
 {
     public enum GameState
     {

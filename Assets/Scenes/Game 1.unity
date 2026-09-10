@@ -10027,6 +10027,7 @@ MonoBehaviour:
   spawnIntervalDecrease: 0.2
   maxZombieCount: 100
   zombies: []
+  gameManger: {fileID: 168045487}
 --- !u!4 &290932026
 Transform:
   m_ObjectHideFlags: 0
@@ -12375,6 +12376,7 @@ MonoBehaviour:
   weaponController: {fileID: 455009729}
   endPage: {fileID: 1514149717}
   quitGame: {fileID: 8520502641409067991}
+  gameManger: {fileID: 168045487}
 --- !u!1001 &345614573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68987,6 +68989,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2172094223188615733, guid: 750dd2b96cb5d6b4cade37b68e8bb709, type: 3}
+      propertyPath: gameManger
+      value: 
+      objectReference: {fileID: 168045487}
     - target: {fileID: 2643874525292982139, guid: 750dd2b96cb5d6b4cade37b68e8bb709, type: 3}
       propertyPath: m_Layer
       value: 11

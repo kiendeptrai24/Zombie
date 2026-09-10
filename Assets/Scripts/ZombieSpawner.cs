@@ -29,21 +29,21 @@ public class ZombieSpawner : Singleton<ZombieSpawner>
 
     private float spawnTimer;
     private float currentSpawnInterval;
-    [SerializeField] private List<GameObject> zombies;
+    [SerializeField] private List<GameObject> zombies = new();
+    [SerializeField] private GameManger gameManger;
+
     protected override void Start()
     {
         currentSpawnInterval = startSpawnInterval;
         spawnTimer = currentSpawnInterval;
-    }
-    private void OnEnable()
-    {
-        GameManger.Instance.OnGameEnded += ReleaseZombie;
+        if (gameManger != null)
+            gameManger.OnGameEnded += ReleaseZombie;
 
     }
     private void OnDisable()
     {
-        if (GameManger.Instance != null)
-            GameManger.Instance.OnGameEnded -= ReleaseZombie;
+        if (gameManger != null)
+            gameManger.OnGameEnded -= ReleaseZombie;
     }
     public void ReleaseZombieDeaded(GameObject zombie)
     {
@@ -52,10 +52,14 @@ public class ZombieSpawner : Singleton<ZombieSpawner>
     }
     private void ReleaseZombie()
     {
+        if (zombies.Count < 0)
+            return;
         foreach (var zombie in zombies)
         {
-            ObjectPool.Instance.ReturnObject(zombie);
+            if (zombies.Contains(zombie))
+                ObjectPool.Instance.ReturnObject(zombie);
         }
+        zombies.Clear();
     }
 
     private void Update()

@@ -14,6 +14,7 @@ public class ZombieHealth : KienMonoBehaviour, IDamageable
     private Collider cl;
     private ZombieDissolve zombieDissolve;
     private ZombieController zombie;
+    private ZombieSpawner zombieSpawner;
     protected override void Awake()
     {
         base.Awake();
@@ -22,6 +23,7 @@ public class ZombieHealth : KienMonoBehaviour, IDamageable
         zombieDissolve = GetComponent<ZombieDissolve>();
         zombie = GetComponent<ZombieController>();
         cl = GetComponent<Collider>();
+        zombieSpawner = FindAnyObjectByType<ZombieSpawner>();
 
     }
     private void OnEnable()
@@ -42,7 +44,7 @@ public class ZombieHealth : KienMonoBehaviour, IDamageable
             isDead = true;
             zombieDissolve.PlayDissolve();
             cl.enabled = false;
-            ZombieSpawner.Instance.ReleaseZombieDeaded(gameObject);
+            zombieSpawner.ReleaseZombieDeaded(gameObject);
             zombie.Dead();
         }
     }

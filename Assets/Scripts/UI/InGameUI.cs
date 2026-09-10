@@ -14,6 +14,7 @@ public class InGameUI : KienMonoBehaviour
     [SerializeField] private WeaponController weaponController;
     [SerializeField] private GameObject endPage;
     [SerializeField] private Button quitGame;
+    [SerializeField] private GameManger gameManger;
 
     protected override void Awake()
     {
@@ -26,19 +27,22 @@ public class InGameUI : KienMonoBehaviour
         {
             SceneLoadManager.Instance.LoadRegularScene("Menu");
         });
-        OnHealthChanged(1, 1);
+        OnHealthChanged(100, 100);
     }
     private void OnEnable()
     {
-        GameManger.Instance.OnTimeChange += UpdateTimer;
-        GameManger.Instance.OnGameEnded += OnEndGame;
+        if (gameManger != null)
+        {
+            gameManger.OnTimeChange += UpdateTimer;
+            gameManger.OnGameEnded += OnEndGame;
+        }
     }
     private void OnDisable()
     {
-        if (GameManger.Instance != null)
+        if (gameManger != null)
         {
-            GameManger.Instance.OnTimeChange -= UpdateTimer;
-            GameManger.Instance.OnGameEnded -= OnEndGame;
+            gameManger.OnTimeChange -= UpdateTimer;
+            gameManger.OnGameEnded -= OnEndGame;
         }
     }
     private void UpdateTimer(int totalSeconds)
@@ -54,7 +58,7 @@ public class InGameUI : KienMonoBehaviour
     }
     private void OnEndGame()
     {
-        resultText.text = GameManger.Instance.GameResult_ == GameManger.GameResult.Win ? "You Won" : "You lost";
+        resultText.text = gameManger.GameResult_ == GameManger.GameResult.Win ? "You Won" : "You lost";
         endPage.SetActive(true);
     }
 
