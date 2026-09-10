@@ -14,6 +14,7 @@ public class Zombie_HitBombState : Zombie_GroundState, IAnimationTrigger
     public override void Enter()
     {
         base.Enter();
+        SFXManager.Instance.PlayOneShot("zombie death");
     }
     public override void Excute()
     {

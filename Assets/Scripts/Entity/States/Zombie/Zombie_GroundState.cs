@@ -12,6 +12,8 @@ public class Zombie_GroundState : ZombieState
     public override void Enter()
     {
         base.Enter();
+        SFXManager.Instance.PlayOneShot("zombie chase");
+
     }
     public override void Excute()
     {

@@ -10,7 +10,7 @@ public class Ak : WeaponBase
         nextFireTime = Time.time + 1f / fireRate;
 
         Debug.Log("Rifle Shoot");
-
+        SFXManager.Instance.PlayOneShot("rifle");
         ObjectPool.Instance.GetObject(
             bulletPrefab,
             firePoint.position,

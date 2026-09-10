@@ -32,6 +32,7 @@ public class Zombie_BattleState : Zombie_GroundState, IAnimationTrigger, ISkillT
     public override void Enter()
     {
         base.Enter();
+        SFXManager.Instance.PlayOneShot("zombie attack");
     }
     public override void Excute()
     {

@@ -146,7 +146,7 @@ public class GameManger : KienMonoBehaviour
         GameResult_ = result;
 
         OnGameEnded?.Invoke();
-
+        SFXManager.Instance.Stop();
         Debug.Log($"Game End: {result}");
     }
 

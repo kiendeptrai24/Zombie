@@ -12,10 +12,12 @@ public class InGameUI : KienMonoBehaviour
     [SerializeField] private Button swapWeaponButton;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private WeaponController weaponController;
+    [SerializeField] private GameManger gameManger;
     [SerializeField] private GameObject endPage;
     [SerializeField] private Button quitGame;
-    [SerializeField] private GameManger gameManger;
-
+    [SerializeField] private GameObject settingsPage;
+    [SerializeField] private Button openSetting;
+    [SerializeField] private Button exitSetting;
     protected override void Awake()
     {
         base.Awake();
@@ -26,6 +28,16 @@ public class InGameUI : KienMonoBehaviour
         quitGame.onClick.AddListener(() =>
         {
             SceneLoadManager.Instance.LoadRegularScene("Menu");
+        });
+        openSetting.onClick.AddListener(() =>
+        {
+            settingsPage.SetActive(true);
+            Time.timeScale = 0;
+        });
+        exitSetting.onClick.AddListener(() =>
+        {
+            settingsPage.SetActive(false);
+            Time.timeScale = 1;
         });
         OnHealthChanged(100, 100);
     }

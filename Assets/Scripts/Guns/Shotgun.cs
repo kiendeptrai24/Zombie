@@ -11,6 +11,7 @@ public class Shotgun : WeaponBase
             return;
 
         nextFireTime = Time.time + 1f / fireRate;
+        SFXManager.Instance.PlayOneShot("shotguns");
 
         for (int i = 0; i < pellets; i++)
         {

@@ -48,6 +48,7 @@ public class BombController : MonoBehaviour
             zombie.GetComponent<ZombieController>().Knockback(direction.normalized * explosionForce, upwardForce);
 
         }
+        SFXManager.Instance.PlayOneShot("bomb");
         ObjectPool.Instance.ReturnObject(exEffect, 1);
         ObjectPool.Instance.ReturnObject(gameObject);
     }
